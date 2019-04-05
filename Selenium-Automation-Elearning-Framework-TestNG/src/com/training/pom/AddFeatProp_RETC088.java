@@ -9,12 +9,12 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 
-public class AddProperty {
+public class AddFeatProp_RETC088 {
 	private WebDriver driver; 
 
 
 
-	public AddProperty(WebDriver driver) {
+	public AddFeatProp_RETC088(WebDriver driver) {
 		this.driver = driver; 
 		PageFactory.initElements(driver, this);
 	}
@@ -71,6 +71,10 @@ public class AddProperty {
 	//Finding Publish button
 	@FindBy(id ="publish")
 	private WebElement publishBtn;
+	
+	//Finding Real Estate Search box
+	@FindBy(xpath = "//input[@placeholder='Search here for Properties..']")
+	private WebElement RealEstSearch;
 	
 	public void sendUserName(String userName) {
 		this.userName.clear();
@@ -162,11 +166,25 @@ public class AddProperty {
 			Thread.sleep(4000);
 			this.publishBtn.click(); 
 			Thread.sleep(4000); 
-			driver.findElement(By.linkText("View post")).click();
+		//	driver.findElement(By.linkText("View post")).click();
 			Thread.sleep(2000);
 			
-			JavascriptExecutor jse2 = (JavascriptExecutor)driver;
-			jse2.executeScript("window.scrollBy(0,250)");
+			WebElement adminBtn = driver.findElement(By.xpath("//a[contains(text(),'Howdy')]"));
+			Actions action = new Actions(driver);
+			action.moveToElement(adminBtn).build().perform();
+			driver.findElement(By.linkText("Log Out")).click();
+			Thread.sleep(3000);
+			driver.findElement(By.xpath("//a[@title='Real Estate']")).click();
+		//	WebElement REsearch = driver.findElement(By.xpath("//input[@placeholder='Search here for Properties..']"));
+			
+			
+		//	JavascriptExecutor jse2 = (JavascriptExecutor)driver;
+		//	jse2.executeScript("window.scrollBy(0,250)");
+		}
+		public void reSearch(String RealEstSearch) throws InterruptedException
+		{
+			this.RealEstSearch.clear();
+			this.RealEstSearch.sendKeys(RealEstSearch);
 		}
 		
 }

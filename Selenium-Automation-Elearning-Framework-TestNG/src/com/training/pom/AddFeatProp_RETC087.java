@@ -4,17 +4,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 
-public class AddProperty {
+public class AddFeatProp_RETC087 {
 	private WebDriver driver; 
 
 
 
-	public AddProperty(WebDriver driver) {
+	public AddFeatProp_RETC087(WebDriver driver) {
 		this.driver = driver; 
 		PageFactory.initElements(driver, this);
 	}
@@ -38,7 +37,8 @@ public class AddProperty {
 	
 	//Finding Feature Name
 	@FindBy(name="tag-name")
-	private WebElement tagName;
+	private WebElement we_tName;
+	
 	
 	//Finding  Slug
 	@FindBy(id="tag-slug")
@@ -100,9 +100,9 @@ public class AddProperty {
 	}
 	
 	// Value for New Feature
-	public void sendtagName(String tagName) {
-		this.tagName.clear();
-		this.tagName.sendKeys(tagName); //Feature Name Input
+	public void sendtagName(String tName) {
+		this.we_tName.clear();
+		this.we_tName.sendKeys(tName); //Feature Name Input
 	}
 	
 	// Value for New Feature

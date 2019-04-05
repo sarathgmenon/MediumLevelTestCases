@@ -9,12 +9,12 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
 
-public class AddRegion {
+public class AddNewReg_RETC086 {
 	private WebDriver driver; 
 
 
 
-	public AddRegion(WebDriver driver) {
+	public AddNewReg_RETC086(WebDriver driver) {
 		this.driver = driver; 
 		PageFactory.initElements(driver, this);
 	}
@@ -114,7 +114,7 @@ public class AddRegion {
 		public void parentdropdown() {
 			this.parentdpdwn.click();
 			Select Actions = new Select(driver.findElement(By.id("parent")));
-				Actions.selectByValue("264");
+				Actions.selectByValue("-1");
 		}
 	
 	// Value for New Region

@@ -32,6 +32,8 @@ public class ApachePOIExcelRead {
 
 			// Get first/desired sheet from the workbook
 			XSSFSheet sheet = workbook.getSheetAt(0);
+			String name=sheet.getRow(1).getCell(0).getStringCellValue();
+			System.out.println("Name of Feature is" +name);
 			
 			int rowTotal = sheet.getLastRowNum();
 
@@ -88,12 +90,15 @@ public class ApachePOIExcelRead {
 		return list1;
 	}
 
-	public static void main(String[] args) {
-		String fileName = "C:/Users/Naveen/Desktop/Testing.xlsx";
+	public  void main(String[] args) {
+		String fileName = "C:\\Manipal_Project_Framework\\TestData.xlsx";
+		
+		
 		
 		for(String [] temp : new ApachePOIExcelRead().getExcelContent(fileName)){
 			for(String  tt : temp){
 				System.out.println(tt);
+			
 			}
 		}
 

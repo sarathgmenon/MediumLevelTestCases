@@ -9,12 +9,12 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
 
-public class AddRegion {
+public class AddNewRegProp_RETC089 {
 	private WebDriver driver; 
 
 
 
-	public AddRegion(WebDriver driver) {
+	public AddNewRegProp_RETC089(WebDriver driver) {
 		this.driver = driver; 
 		PageFactory.initElements(driver, this);
 	}
@@ -67,6 +67,18 @@ public class AddRegion {
 	@FindBy(id="search-submit")
 	private WebElement searchSbmBtn;
 	
+	//Finding New Property Title
+		@FindBy(id="title")
+		private WebElement  propTitle;
+		
+		//Finding New Property Content	
+		@FindBy(id="content")
+		private WebElement propContent;
+		
+		//Finding Publish button
+		@FindBy(id ="publish")
+		private WebElement publishBtn;
+	
 	public void sendUserName(String userName) {
 		this.userName.clear();
 		this.userName.sendKeys(userName); //User Id Input
@@ -114,7 +126,7 @@ public class AddRegion {
 		public void parentdropdown() {
 			this.parentdpdwn.click();
 			Select Actions = new Select(driver.findElement(By.id("parent")));
-				Actions.selectByValue("264");
+				Actions.selectByValue("-1");
 		}
 	
 	// Value for New Region
@@ -123,37 +135,32 @@ public class AddRegion {
 			this.regionDescr.sendKeys(regionDescr); //Description Input
 		}
 		
-		
-		//Clicking on Add New Region button
 		public void clickaddnewregionBtn() throws InterruptedException {
 			this.addnewRegionbtn.click(); 
 			
 		}
 		
-		// Scroll up the page
-		public void scrollup() {
+		public void newProp(String propTitle, String propContent) throws InterruptedException
+		{
+			driver.findElement(By.xpath("//a[@href='post-new.php?post_type=property']")).click();
+			Thread.sleep(2000);
+			this.propTitle.sendKeys(propTitle); 
+		//	driver.switchTo().frame("content_ifr");
+			this.propContent.sendKeys(propContent);
+		//	driver.switchTo().defaultContent();
+			
 			JavascriptExecutor jse = (JavascriptExecutor)driver;
 			jse.executeScript("window.scrollBy(0,-550)");
-		}
-	
-		// Value for Search Region
-		public void sendregionSearch(String regionSearch) throws InterruptedException {
-			this.regionSearch.clear();
-			this.regionSearch.sendKeys(regionSearch); //Search Input
-			Thread.sleep(2000);
-					
-		}
-		
 			
-		//Clicking on Search Feature button
-		public void clicksearchSbmBtn() throws InterruptedException {
-	//	WebElement element = driver.findElement(By.id("search-submit"));
-	//	Actions action = new Actions(driver);
-	//	action.moveToElement(element).click().build().perform();
-		this.searchSbmBtn.click(); 
-    			
+			driver.findElement(By.id("in-property_feature-247")).click();
+			Thread.sleep(4000);
+			this.publishBtn.click(); 
+			Thread.sleep(4000); 
+			driver.findElement(By.linkText("View post")).click();
+			Thread.sleep(2000);
+			
+			JavascriptExecutor jse2 = (JavascriptExecutor)driver;
+			jse2.executeScript("window.scrollBy(0,250)");
 		}
-
-		
 		
 }

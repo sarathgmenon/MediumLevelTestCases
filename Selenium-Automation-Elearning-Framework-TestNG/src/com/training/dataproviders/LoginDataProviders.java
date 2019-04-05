@@ -20,7 +20,7 @@ public class LoginDataProviders {
 		int count = 0; 
 		for(LoginBean temp : list){
 			Object[]  obj = new Object[2]; 
-			obj[0] = temp.getUserName(); 
+			obj[0] = temp.getuserName(); 
 			obj[1] = temp.getPassword(); 
 			
 			result[count ++] = obj; 
@@ -32,7 +32,19 @@ public class LoginDataProviders {
 	
 	@DataProvider(name = "excel-inputs")
 	public Object[][] getExcelData(){
-		String fileName ="C:/Users/Naveen/Desktop/Testing.xlsx"; 
+		String fileName ="C:\\Manipal_Project_Framework\\TestData.xlsx"; 
+		return new ApachePOIExcelRead().getExcelContent(fileName); 
+	}
+	
+	@DataProvider(name = "excel-inputs2")
+	public Object[][] getExcelData2(){
+		String fileName ="C:\\Manipal_Project_Framework\\TestData2.xlsx"; 
+		return new ApachePOIExcelRead().getExcelContent(fileName); 
+	}
+	
+	@DataProvider(name = "excel-inputs3")
+	public Object[][] getExcelData3(){
+		String fileName ="C:\\Manipal_Project_Framework\\TestData3.xlsx"; 
 		return new ApachePOIExcelRead().getExcelContent(fileName); 
 	}
 	

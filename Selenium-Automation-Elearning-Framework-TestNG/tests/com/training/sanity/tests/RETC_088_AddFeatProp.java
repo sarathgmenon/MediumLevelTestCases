@@ -13,15 +13,15 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.training.generics.ScreenShot;
-import com.training.pom.AddProperty;
+import com.training.pom.AddFeatProp_RETC088;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
 
-public class RETC_057_AddProperty {
+public class RETC_088_AddFeatProp {
 
 	private WebDriver driver;
 	private String baseUrl;
-	private AddProperty AddProperty;
+	private AddFeatProp_RETC088 AddFeatProp_RETC088;
 	private static Properties properties;
 	//private ScreenShot screenShot;
 
@@ -36,7 +36,7 @@ public class RETC_057_AddProperty {
 	@BeforeMethod
 	public void setUp() throws Exception {
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
-		AddProperty = new AddProperty(driver); 
+		AddFeatProp_RETC088 = new AddFeatProp_RETC088(driver); 
 		baseUrl = properties.getProperty("baseURL");
 	//	screenShot = new ScreenShot(driver); 
 		// open the browser 
@@ -56,39 +56,40 @@ public class RETC_057_AddProperty {
 	public void addprop() throws InterruptedException {
 
 //////////////////Admin Log in ///////////////////
-		AddProperty.sendUserName("admin");
-		AddProperty.sendPassword("admin@123");
-		AddProperty.clickLoginBtn(); 
+		AddFeatProp_RETC088.sendUserName("admin");
+		AddFeatProp_RETC088.sendPassword("admin@123");
+		AddFeatProp_RETC088.clickLoginBtn(); 
 //////////////////Admin Log in ///////////////////
 		
 		
 ///////////////// Property Click ////////////////		
-		AddProperty.propClick(); //Selects property from list
+		AddFeatProp_RETC088.propClick(); //Selects property from list
 ///////////////// Property Click ////////////////	
 		
 		
 ///////////////// Adding New Feature ///////////		
-		AddProperty.featuresClick();
-		AddProperty.sendtagName("Shantiniketan");
-		AddProperty.sendslug("Prestige_57");
-		AddProperty.sendfeatureDescr("New Launches of Apartments");
+		AddFeatProp_RETC088.featuresClick();
+		AddFeatProp_RETC088.sendtagName("New Launches");
+		AddFeatProp_RETC088.sendslug("launch");
+		AddFeatProp_RETC088.sendfeatureDescr("New Launches of Villas, Apartments, Flats (88)");
 		
-		AddProperty.clickaddnewFeatBtn(); 
+		AddFeatProp_RETC088.clickaddnewFeatBtn(); 
 	//	screenShot.captureScreenShot("First");
 ///////////////// Adding New Feature ////////////
 		
 		
-		AddProperty.scrollup();
+		AddFeatProp_RETC088.scrollup();
 		
 ///////////////// Searching for Added Feature /////////////
-		AddProperty.sendfeatureSearch("Prestige_57");
-		AddProperty.clicksearchSbmBtn();
+		AddFeatProp_RETC088.sendfeatureSearch("New Launches");
+		AddFeatProp_RETC088.clicksearchSbmBtn();
 ////////////////  Searching for Added Feature ////////////		
 	
 	
 
 	/////////////// Adding Property /////////////////////
-			AddProperty.newProp("Prestige"," Home Town ");
+		AddFeatProp_RETC088.newProp("Prestige"," Home Town ");
+		AddFeatProp_RETC088.reSearch("Prestige");
 		
 	////////////////Adding Property//////////////////////
 }

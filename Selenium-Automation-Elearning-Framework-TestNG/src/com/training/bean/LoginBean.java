@@ -3,7 +3,7 @@ package com.training.bean;
 public class LoginBean {
 	private String userName;
 	private String password;
-
+	public String tName;
 	public LoginBean() {
 	}
 
@@ -13,11 +13,11 @@ public class LoginBean {
 		this.password = password;
 	}
 
-	public String getUserName() {
+	public String getuserName() {
 		return userName;
 	}
 
-	public void setUserName(String userName) {
+	public void setuserName(String userName) {
 		this.userName = userName;
 	}
 
@@ -33,5 +33,16 @@ public class LoginBean {
 	public String toString() {
 		return "LoginBean [userName=" + userName + ", password=" + password + "]";
 	}
+
+	
+
+	public String gettName() {
+		return tName;
+	}
+
+	public void settName(String tName) {
+		this.tName = tName;
+	}
+
 
 }

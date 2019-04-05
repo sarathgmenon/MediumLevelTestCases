@@ -2,6 +2,8 @@ package com.training.sanity.tests;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
+import static org.testng.Assert.assertEquals;
+
 
 
 import org.openqa.selenium.JavascriptExecutor;
@@ -12,16 +14,19 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.training.generics.ScreenShot;
-import com.training.pom.AddProperty;
+import com.training.pom.AddFeatProp_RETC087;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
+import com.training.bean.LoginBean;
+import com.training.readexcel.ReadExcel;
+import com.training.dataproviders.LoginDataProviders;
 
-public class RETC_057_AddProperty {
+public class RETC_087_AddFeatProp {
 
 	private WebDriver driver;
 	private String baseUrl;
-	private AddProperty AddProperty;
+//	private String tName, slug, featureDescr, featureSearch, propTitle, propContent;
+	private AddFeatProp_RETC087 AddFeatProp_RETC087;
 	private static Properties properties;
 	//private ScreenShot screenShot;
 
@@ -36,7 +41,7 @@ public class RETC_057_AddProperty {
 	@BeforeMethod
 	public void setUp() throws Exception {
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
-		AddProperty = new AddProperty(driver); 
+		AddFeatProp_RETC087 = new AddFeatProp_RETC087(driver); 
 		baseUrl = properties.getProperty("baseURL");
 	//	screenShot = new ScreenShot(driver); 
 		// open the browser 
@@ -51,44 +56,44 @@ public class RETC_057_AddProperty {
 		driver.quit();
 	}
 	
-	@Test
+	@Test(dataProvider = "excel-inputs", dataProviderClass = LoginDataProviders.class)
 	
-	public void addprop() throws InterruptedException {
+	public void addprop(String tName,String slug,String featureDescr,String featureSearch,String propTitle,String propContent) throws InterruptedException {
 
 //////////////////Admin Log in ///////////////////
-		AddProperty.sendUserName("admin");
-		AddProperty.sendPassword("admin@123");
-		AddProperty.clickLoginBtn(); 
+		AddFeatProp_RETC087.sendUserName("admin");
+		AddFeatProp_RETC087.sendPassword("admin@123");
+		AddFeatProp_RETC087.clickLoginBtn(); 
 //////////////////Admin Log in ///////////////////
 		
 		
 ///////////////// Property Click ////////////////		
-		AddProperty.propClick(); //Selects property from list
+		AddFeatProp_RETC087.propClick(); //Selects property from list
 ///////////////// Property Click ////////////////	
 		
 		
 ///////////////// Adding New Feature ///////////		
-		AddProperty.featuresClick();
-		AddProperty.sendtagName("Shantiniketan");
-		AddProperty.sendslug("Prestige_57");
-		AddProperty.sendfeatureDescr("New Launches of Apartments");
+		AddFeatProp_RETC087.featuresClick();
+		AddFeatProp_RETC087.sendtagName(tName);
+		AddFeatProp_RETC087.sendslug(slug);
+		AddFeatProp_RETC087.sendfeatureDescr(featureDescr);
 		
-		AddProperty.clickaddnewFeatBtn(); 
+		AddFeatProp_RETC087.clickaddnewFeatBtn(); 
 	//	screenShot.captureScreenShot("First");
 ///////////////// Adding New Feature ////////////
 		
 		
-		AddProperty.scrollup();
+		AddFeatProp_RETC087.scrollup();
 		
 ///////////////// Searching for Added Feature /////////////
-		AddProperty.sendfeatureSearch("Prestige_57");
-		AddProperty.clicksearchSbmBtn();
+		AddFeatProp_RETC087.sendfeatureSearch(featureSearch);
+		AddFeatProp_RETC087.clicksearchSbmBtn();
 ////////////////  Searching for Added Feature ////////////		
 	
 	
 
 	/////////////// Adding Property /////////////////////
-			AddProperty.newProp("Prestige"," Home Town ");
+		AddFeatProp_RETC087.newProp(propTitle,propContent); 
 		
 	////////////////Adding Property//////////////////////
 }
